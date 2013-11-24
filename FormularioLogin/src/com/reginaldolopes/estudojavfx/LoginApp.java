@@ -1,3 +1,5 @@
+package com.reginaldolopes.estudojavfx;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -80,7 +82,7 @@ public class LoginApp extends Application {
 		btEntrar.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
-			public void handle(ActionEvent arg0) {
+			public void handle(ActionEvent event) {
 				logar();
 
 			}
@@ -89,7 +91,12 @@ public class LoginApp extends Application {
 
 	private void logar() {
 		if (txLogin.getText().equals("admin") && txSenha.getText().equals("casadocodigo")) {
-			// TODO Abrir a tela VitrineApp
+			try {
+				new VitrineApp().start(new Stage());
+				LoginApp.getStage().close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Login e/ou senha inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
